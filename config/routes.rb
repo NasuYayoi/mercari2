@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit]
   get 'user/prof' => 'users#prof'
   get 'user/mypage' => 'users#mypage'
-  get 'user/credit' => 'users#credit'
   get 'user/logout' => "users#logout"
 
 end
