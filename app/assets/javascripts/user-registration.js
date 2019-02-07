@@ -1,5 +1,4 @@
-$(document).on('turbolinks:load', function() {
-
+$(function(){
   $('.btn-mail').on("click", function() {
     $('section').css('display','none');
     $('.registration').css('display','block');
