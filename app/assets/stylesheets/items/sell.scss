@@ -45,6 +45,9 @@
           text-align: center;
           vertical-align: middle;
           display: table-cell;
+          .picture-file__field{
+            display: none;
+          }
           &__picture{
             display: none;
           }
@@ -108,6 +111,9 @@
       &-contents{
         float: left;
         width: 400px;
+        #include_id-content{
+          display: none;
+        }
         &__category{
           &__name{
             @include inputTitle;
@@ -115,9 +121,39 @@
           &__mark{
              @include necessaryMark;
           }
+          &__unnecessary-mark{
+            @include unnecessaryMark;
+          }
+          .categories__input{
+            @include inputTag;
+          }
+          &__category-leadies{
+            .sell-body-detail-contents__category-leadies-content{
+              .categories__input{
+                @include inputTag;
+              }
+            }
+          }
+          &__category-mens{
+            &-content{
+              .categories__input{
+                @include inputTag;
+              }
+            }
+          }
+          &__category-baby{
+            &-content{
+              .categories__input{
+                @include inputTag;
+              }
+            }
+          }
+          .brand__input{
+            @include text_Field;
+          }
         }
-        .wide-categories__input{
-          @include inputTag;
+        #leadies, #mens, #baby, #leadies_tops, #leadies_jacket, #leadies_pants, #leadies_skirt, #leadies_onepiece, #leadies_shoes, #leadies_roomware, #leadies_legware, #leadies_cap, #leadies_bag, #leadies_accessories, #leadies_hairaccessories, #leadies_samll, #leadies_clock, #leadies_wig, #leadies_swimsuit, #leadies_suits, #leadies_maternity, #leadies_others,#mens_tops,#mens_jacket,#mens_pants,#mens_shoes,#mens_bag,#mens_suit,#mens_cap,#mens_accessories,#mens_samll,#mens_clock,#mens_swimsuit,#mens_legware,#mens_underware,#mens_others,#baby_girl95,#baby_boy95,#baby_girlboy95,#baby_boy100,#baby_boygirl100,#baby_shoes,#baby_small,#baby_toilet,#baby_movetool,#baby_foods,#baby_sleeptool,#baby_toy,#baby_souvenir,#baby_other{
+          display: none;
         }
         &__states{
           &__name{
