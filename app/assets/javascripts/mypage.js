@@ -16,4 +16,3 @@ $(function(){
     $('.user-page-items-main__body ul').eq(index_num).css('display','block');
   });
 });
-
