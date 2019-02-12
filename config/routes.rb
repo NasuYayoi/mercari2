@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'items/buy' => "items#buy"
   get 'items/search' => "items#search"
   resources :items, only: [:index, :show, :new, :create]
+  match 'dynamic_delivery_method', to: 'items#dynamic_delivery_method', via: [:get, :post]
   get 'user/identification' => 'users#identification'
   get 'user/prof' => 'users#prof'
   get 'user/mypage' => 'users#mypage'

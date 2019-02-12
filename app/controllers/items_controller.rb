@@ -1,17 +1,79 @@
 class ItemsController < ApplicationController
+  before_action :set_section, only: [:sell]
   def index
     @items = Item.order("RAND()").limit(4)
   end
   def create
+    Item.create(name: item_params[:name],description: item_params[:description],category_id: item_params[:category_id],size_id: item_params[:size_id],brand: item_params[:brand],condition_id: item_params[:condition_id],delivery_fee_id: item_params[:delivery_fee_id],delivery_method_id: item_params[:delivery_method_id],ships_forms_id: item_params[:ships_forms_id],delivery_day_id: item_params[:delivery_day_id],price: item_params[:price], )
+    # redirect_to action: :index
+    # トップページに飛ばすコードを入れる
   end
   def sell
     @item = Item.new
-    @prefecture = Prefecture.new
+    @item.images.build
+    @item.build_brand
   end
   def show
   end
   def buy
   end
   def search
+  end
+  def dynamic_delivery_method
+    @method = DeliveryMethod.where(params.require(:item).permit(:delivery_fee_id))
+  end
+  private
+  def set_section
+    @leadies_tops = Category.where(id: 33..51)
+    @leadies_jacket = Category.where(id: 52..53)
+    @leadies_pants = Category.where(id: 54..55)
+    @leadies_skirt = Category.where(id: 56..57)
+    @leadies_onepiece = Category.where(id: 58..59)
+    @leadies_shoes = Category.where(id: 60..61)
+    @leadies_roomware = Category.where(id: 62..63)
+    @leadies_legware = Category.where(id: 64..65)
+    @leadies_cap = Category.where(id: 66..67)
+    @leadies_bag = Category.where(id: 68..69)
+    @leadies_accessories = Category.where(id: 70..71)
+    @leadies_hairaccessories = Category.where(id: 72..73)
+    @leadies_samll = Category.where(id: 74..75)
+    @leadies_clock = Category.where(id: 76..77)
+    @leadies_wig = Category.where(id: 78..79)
+    @leadies_swimsuit = Category.where(id: 80..81)
+    @leadies_suits = Category.where(id: 82..83)
+    @leadies_maternity = Category.where(id: 84..85)
+    @leadies_others = Category.where(id: 86..87)
+    @mens_tops = Category.where(id: 102..103)
+    @mens_jacket = Category.where(id: 104..105)
+    @mens_pants = Category.where(id: 106..107)
+    @mens_shoes = Category.where(id: 108..109)
+    @mens_bag = Category.where(id: 110..111)
+    @mens_suit = Category.where(id: 112..113)
+    @mens_cap = Category.where(id: 114..115)
+    @mens_accessories = Category.where(id: 116..117)
+    @mens_samll = Category.where(id: 118..119)
+    @mens_clock = Category.where(id: 120..121)
+    @mens_swimsuit = Category.where(id: 122..123)
+    @mens_legware = Category.where(id: 124..125)
+    @mens_underware = Category.where(id: 126..127)
+    @baby_girl95 = Category.where(id: 142..143)
+    @baby_boy95 = Category.where(id: 144..145)
+    @baby_girlboy95 = Category.where(id: 146..147)
+    @baby_boy100 = Category.where(id: 148..149)
+    @baby_boygirl100 = Category.where(id: 150..151)
+    @baby_shoes = Category.where(id: 152..153)
+    @baby_small = Category.where(id: 154..155)
+    @baby_toilet = Category.where(id: 156..157)
+    @baby_movetool = Category.where(id: 158..159)
+    @baby_foods = Category.where(id: 160..161)
+    @baby_sleeptool = Category.where(id: 162..163)
+    @baby_toy = Category.where(id: 164..165)
+    @baby_souvenir = Category.where(id: 166..167)
+    @baby_other = Category.where(id: 168..169)
+    @method = DeliveryMethod.where('id < 5')
+    @delivery_fee_all = DeliveryFee.all
+  end
+  def item_params
+  params.permit(:name, :description, :category_id, :size_id, :brand, :condition_id, :delivery_fee_id, :delivery_method_id, :ships_forms_id, :delivery_day_id, :price)
   end
 end
