@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :category_search
+  before_action :search_variable
   protect_from_forgery with: :exception
 
 
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
   def category_search
     @categorys = Category.where(ancestry: nil)
     @brands  = Brand.all
+  end
+
+  def search_variable
+    @search_data = Item.ransack(params[:name_or_brand_name_or_category_name_cont_all])
   end
 
 end

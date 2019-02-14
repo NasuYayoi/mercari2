@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20190205083435) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "item_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["item_id"], name: "index_brands_on_item_id", using: :btree
   end
 
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 20190205083435) do
   end
 
   create_table "conditions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "condition",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "condition",  default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "creditcards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -79,16 +79,16 @@ ActiveRecord::Schema.define(version: 20190205083435) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "category_id"
     t.string   "name"
     t.integer  "price"
-    t.integer  "size_id",         null: false
-    t.integer  "condition_id",    null: false
-    t.integer  "delivery_fee_id", null: false
-    t.integer  "delivery_day_id", null: false
-    t.integer  "ships_forms_id",  null: false
+    t.integer  "size_id"
+    t.integer  "condition_id"
+    t.integer  "delivery_fee_id"
+    t.integer  "delivery_day_id"
+    t.integer  "ships_forms_id"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["condition_id"], name: "index_items_on_condition_id", using: :btree
     t.index ["delivery_day_id"], name: "index_items_on_delivery_day_id", using: :btree
@@ -110,9 +110,9 @@ ActiveRecord::Schema.define(version: 20190205083435) do
   end
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "size",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "size",       default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

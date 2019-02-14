@@ -4,8 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("RAND()").limit(4)
-    @search_data   = Item.ransack(params[:q])
-    @search_result = @search_data.result(distinct: true)
   end
 
   def create
