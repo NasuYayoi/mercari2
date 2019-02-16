@@ -74,6 +74,17 @@
         line-height: 1.5;
         font-size: 14px;
       }
+      #payjp_checkout_box input[type=button] {
+        display: block;
+        width: 100%;
+        text-align: center;
+        line-height: 48px;
+        font-size: 14px;
+        margin: 16px 0 0;
+        color: $white;
+        background-color: $mercariRed;
+        border: 1px solid #888;
+      }
       &__send-btn {
         display: block;
         width: 100%;

@@ -1,0 +1,26 @@
+%ul.pc-header-nav
+  %li
+    %h2
+      = link_to "カテゴリーから探す", "/items",class: "pc-header-nav-root"
+    %ul.pc-header-nav__parent-wrap
+      - categorys.each do |category|
+        %li.pc-header-nav__parent
+          %h3
+            = link_to "#{category.name}", "/items" ,class: "header-bottom--left__nav-link-item"
+          %ul.pc-header-nav__child-wrap
+            -category.children.each do |child|
+              %li.pc-header-nav__child
+                %h4
+                  = link_to "#{child.name}","/items" ,class: "header-bottom--left__nav-link-item"
+                %ul.pc-header-nav__grand-child-wrap
+                  -child.children.each do |children|
+                    %li.pc-header-nav__grand-child
+                      = link_to "#{children.name}", "/items" ,class: "header-bottom--left__nav-link-item"
+  %li
+    %h2
+      = link_to "ブランドから探す", "/items" ,class: "header-bottom--left__nav-brand"
+    %ul.pc-header-nav__parent-wrap
+      - brands.each do |brand|
+        %li.pc-header-nav__parent
+          %h3
+            = link_to "#{brand.name}", "/items" ,class: "header-bottom--left__nav-link-item"

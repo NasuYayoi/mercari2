@@ -1,11 +1,15 @@
 $(function() {
-  $(".pc-header-nav li ul").hide();
-  $(".pc-header-nav li").hover(function() {
-    $(">ul", this).stop(true, true).slideDown(100);
-    $(">a", this).addClass("active");
+  $(".pc-header-nav ul").hide();
+  $(".pc-header-nav li").hover( function() {
+    $(">ul", this).show();
+    $(">a", this).show();
   },
   function() {
-    $(">ul", this).stop(true, true).slideUp("fast");
-    $(">a", this).removeClass("active");
+    $(">ul", this).hide();
+    $(">a", this).hide();
+    }
+  );
+  $('.pc-header-nav').click(function() {
+      $(this).parent().hide().addClass('fixed');
   });
 });

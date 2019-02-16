@@ -6,32 +6,35 @@
       .buy-content-inner
         %h3.buy-content-inner__photo
           = image_tag( "m90055501397_1.jpg", class: "buy-content-inner__photo-img" )
-        %p.buy-content-inner__name【値下げ】レイカズンニットワンピースGU
-        / ここからフォームタグ
+        %p.buy-content-inner__name
+          = @item.name
         .buy-content-inner__price
-          %p.buy-content-inner__price--bold ¥ 1,200
+          %p.buy-content-inner__price--bold
+            = "¥#{@item.price}"
           %p.buy-content-inner__price--normal 送料込み
         %p.buy-content-inner__point ポイントはありません
         .buy-content-inner__pay-price
           %p.buy-content-inner__pay-price-leftbox 支払い金額
-          %p.buy-content-inner__pay-price-rightbox ¥ 1,200
-        %p.buy-content-inner__alert 配送先と支払い方法の入力を完了してください。
-        %input{class: "buy-content-inner__send-btn",type: "submit" , value: "購入する" }
+          %p.buy-content-inner__pay-price-rightbox
+            = "¥#{@item.price}"
+        = form_tag(action: :pay, method: :post) do
+          %script.payjp-button{ src: "https://checkout.pay.jp", type: "text/javascript", "data-text": "購入する", "data-submit-text": "購入する", "data-key": ENV["PAYJP_PUBLIC_KEY"]}
+
     .buy-user-info
       .buy-user-info-inner
         .buy-user-info-inner__address
           %h3 配送先
           .buy-user-info-inner__address-text
-            〒000-0000
+            = "〒#{current_user.address.postcode}"
             %br
-            東京都 杉並区 00000
+            = "#{current_user.address.prefecture.name} #{current_user.address.city} #{current_user.address.address} #{current_user.address.building_name}"
             %br
-            山田 太郎
-          = link_to '変更する', "/items" ,class: "buy-user-info-inner__address-change" ,method: :get
+            = "#{current_user.last_name} #{current_user.first_name}"
+          = link_to '変更する', "#" ,class: "buy-user-info-inner__address-change" ,method: :get
       .buy-user-info-inner
         .buy-user-info-inner__pay-fix
           %h3 支払い方法
           .buy-user-info-inner__pay-fix-method
-            クレカの情報〜〜〜〜
-          = link_to '変更する', "/items" ,class: "buy-user-info-inner__pay-fix-change" ,method: :get
+
+          = link_to '変更する', "#" ,class: "buy-user-info-inner__pay-fix-change" ,method: :get
   = render 'devise/registrations/footer'

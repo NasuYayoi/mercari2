@@ -1,12 +1,15 @@
 class ItemsController < ApplicationController
   before_action :set_section, only: [:sell]
+  before_action :set_item, only: [:show, :buy, :pay]
   def index
     @items = Item.order("RAND()").limit(4)
   end
+
   def create
     Item.create(name: item_params[:name],description: item_params[:description],category_id: item_params[:category_id],size_id: item_params[:size_id],brand: item_params[:brand],condition_id: item_params[:condition_id],delivery_fee_id: item_params[:delivery_fee_id],delivery_method_id: item_params[:delivery_method_id],ships_forms_id: item_params[:ships_forms_id],delivery_day_id: item_params[:delivery_day_id],price: item_params[:price])
     # redirect_to action: :index
   end
+
   def sell
     @item = Item.new
     @item.images.build
@@ -110,15 +113,30 @@ class ItemsController < ApplicationController
       @midcategories_id = @leadies_tops
     end
   end
+
   def show
+
+    @search_data    = Item.ransack(search_params)
+    @search_result  = @search_data.result(distinct: true)
+
+    @items = Item.order("RAND()").limit(6)
+
   end
+
   def buy
   end
+
   def search
+    @search_data    = Item.ransack(search_params)
+    @search_result  = @search_data.result(distinct: true)
+    @search_count   = @search_result.length
+    @sizes          = Size.all
+    @parents        = Category.roots
   end
   def dynamic_delivery_method
     @method = DeliveryMethod.where(params.require(:item).permit(:delivery_fee_id))
   end
+  
   private
   def set_section
     @leadies_tops = Category.where(id: 33..51)
@@ -170,7 +188,35 @@ class ItemsController < ApplicationController
     @method = DeliveryMethod.where('id < 5')
     @delivery_fee_all = DeliveryFee.all
   end
+  
   def item_params
   params.permit(:name, :description, :category_id, :size_id, :brand, :condition_id, :delivery_fee_id, :delivery_method_id, :ships_forms_id, :delivery_day_id, :price)
   end
+  def pay
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    charge = Payjp::Charge.create(
+      amount: @item.price,
+      card: params['payjp-token'],
+      currency: 'jpy',
+    )
+  end
+
+  def search_params
+    params.require(:q).permit(
+      :s,
+      :name_or_brand_name_or_category_name_cont_all,
+      :category_id_in,
+      :brand_name_cont_all,
+      :size_id_in,
+      :price_gteq,
+      :price_lteq,
+      :condition_id_eq,
+      :delivery_fee_id_eq,
+      ) unless params[:q].blank?
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 end

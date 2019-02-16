@@ -1,2 +1,69 @@
 .search-side-bar
-  検索LV2対応時にビューも作成（ransack導入後）
+  = search_form_for(@search_data, url:items_search_path, html:{ class: "product_search__detail" }) do |f|
+    .search-side-bar__top
+      = f.select :s, [["価格の安い順", "price asc"], ["価格の高い順", "price desc"], ["出品の古い順", "created_at asc"], ["出品の新しい順", "created_at desc"]], {prompt: "並び替え"}, { class: "search-side-bar__top-select" }
+    .search-side-bar__main
+      %h3.search-side-bar__main-title 詳細検索
+      .search-side-bar__main-keyword
+        = f.label :name_or_brand_name_or_category_name_cont_all, "キーワードを追加する"
+        = f.search_field :name_or_brand_name_or_category_name_cont_all, class: "search-side-bar__main-keyword-form"
+      .search-side-bar__main-category
+        = f.label :category_id_in, "カテゴリーを選択する"
+        .search-side-bar__main-category-wrap
+          = f.collection_select :category_id, @parents, :id, :name, {prompt: "---"}, { class: "search-side-bar__main-category-wrap-select" }
+        / .search-side-bar__main-category-hide
+        /   = f.select :category_id_eq, {}, {prompt: "---"}, { class: "search-side-bar__main-category-wrap-select" }
+      .search-side-bar__main-brand
+        = f.label :brand_name_cont_all, "ブランド名から探す"
+        %input{class: "search-side-bar__main-brand-form", value: "ブランド"}
+      .search-side-bar__main-itemsize
+        = f.label "サイズを指定する"
+        .search-side-bar__main-itemsize-wrap
+          = f.collection_select :size_id_in, @sizes, :id, :size, {prompt: "---"}, { class: "search-side-bar__main-itemsize-form" }
+      .search-side-bar__main-price
+        = f.label :price, "価格"
+        .search-side-bar__main-price-wrap
+          = f.select :price, ["300 ~ 1000", "1000 ~ 5000", "5000 ~ 10000", "10000 ~ 30000", "10000 ~ 30000", "50000 ~ "], {prompt: "選択してください"}, { class: "search-side-bar__main-price-select" }
+        = f.search_field :price_gteq, class: "search-side-bar__main-price-input"
+        %span 〜
+        = f.search_field :price_lteq, class: "search-side-bar__main-price-input"
+      .search-side-bar__main-condition
+        = f.label :condition_id_eq, "商品の状態"
+        %br
+        .search-side-bar__main-condition__checkbox
+          = f.check_box :condition_id_eq, {multiple: true}, "新品未使用", nil
+          新品未使用
+        .search-side-bar__main-condition__checkbox
+          = f.check_box :condition_id_eq, {multiple: true}, "未使用に近い", nil
+          未使用に近い
+        .search-side-bar__main-condition__checkbox
+          = f.check_box :condition_id_eq, {multiple: true}, "目立った傷や汚れなし", nil
+          目立った傷や汚れなし
+        .search-side-bar__main-condition__checkbox
+          = f.check_box :condition_id_eq, {multiple: true}, "やや傷や汚れやあり", nil
+          やや傷や汚れやあり
+        .search-side-bar__main-condition__checkbox
+          = f.check_box :condition_id_eq, {multiple: true}, "全体的に状態が悪い", nil
+          全体的に状態が悪い
+      .search-side-bar__main-delivery
+        = f.label :delivery_fee_id_eq, "配送料の負担"
+        %br
+        .search-side-bar__main-delivery__checkbox
+          = f.check_box :delivery_fee_id_eq, {multiple: true}, "着払い(購入者負担)", nil
+          着払い(購入者負担)
+        .search-side-bar__main-delivery__checkbox
+          = f.check_box :delivery_fee_id_eq, {multiple: true}, "送料込み(出品者負担)", nil
+          送料込み(出品者負担)
+      .search-side-bar__main-buyer
+        / = f.label :buyer_id, "販売状況"
+        %br
+        .search-side-bar__main-buyer__checkbox
+          / = f.check_box :buyer_id_null, as: :boolean, include_hidden: false
+          / 販売中
+        .search-side-bar__main-buyer__checkbox
+          / = f.check_box :buyer_id_not_null, as: :boolean, include_hidden: false
+          / 売り切れ
+      .search-side-bar__main-action
+        .search-side-bar__main-action-clear
+          クリア
+        = f.submit "完了", class: 'search-side-bar__main-action-fix'

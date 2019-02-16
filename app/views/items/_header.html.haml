@@ -1,41 +1,13 @@
 .header
   .header-top
-    = image_tag("logo.svg",alt: "logo",class: "header-top__title")
-    %input{class: "header-top__search",placeholder: 'キーワードから探す' }
-      = fa_icon 'search', class: 'header-top__search-icon'
-
+    = link_to image_tag('logo.svg', alt:"mercari", class: 'header-top__title'), root_path
+    = search_form_for(@search_data, url:items_search_path) do |f|
+      = f.search_field :name_or_brand_name_or_category_name_cont_all, placeholder: "キーワードから探す", class: "header-top__search"
+      %button.icon-search{type:"submit"}
+        = fa_icon 'search'
   .header-bottom
-    / ここからメニュー
     .header-bottom--left
-      %ul.pc-header-nav
-        %li
-          %h2
-            = link_to "カテゴリーから探す", "/items",class: "pc-header-nav-root"
-          %ul.pc-header-nav__parent-wrap
-            %li.pc-header-nav__parent
-              %h3
-                = link_to "レディース", "/items" ,class: "header-bottom--left__nav-link-item"
-              %ul.pc-header-nav__child-wrap
-                %li.pc-header-nav__child
-                  %h4
-                    = link_to "トップスアウター","/items" ,class: "header-bottom--left__nav-link-item"
-                  %ul.pc-header-nav__grand-child-wrap
-                    %li.pc-header-nav__grand-child
-                      = link_to "トップスカットソー", "/items" ,class: "header-bottom--left__nav-link-item"
-                    %li.pc-header-nav__grand-child
-                      = link_to "ブラウス", "/items" ,class: "header-bottom--left__nav-link-item"
-                %li.pc-header-nav__child
-                  %h4
-                    = link_to "ジャケットアウター", "/items" ,class: "header-bottom--left__nav-link-item"
-                  %ul.pc-header-nav__grand-child-wrap
-                    %li.pc-header-nav__grand-child
-                      = link_to "仮テキスト", "/items" ,class: "header-bottom--left__nav-link-item"
-                    %li.pc-header-nav__grand-child
-                      = link_to "仮テキスト", "/items" ,class: "header-bottom--left__nav-link-item"
-        %li
-          %h3.header-bottom--left
-            = link_to "ブランドから探す", "/items" ,class: "header-bottom--left__nav-brand"
-    / ここまでメニュー
+      =render partial: 'items/ddmenu', locals: {categorys: @categorys, brands: @brands}
     .header-bottom--right
       %ul.bottom--right__nav
         - if user_signed_in?

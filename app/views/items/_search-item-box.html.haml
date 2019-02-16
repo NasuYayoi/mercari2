@@ -1,15 +1,16 @@
-.search__content-item-box
-  = link_to "/items" ,class: "pickup-content__title-link" do
-    = image_tag("m90055501397_1.jpg", alt: "商品", class: "search__content-item-box-photo")
-    .search__content-item-box-body
-      .search__content-item-box-body-name
-        %h3 SLYセーターSLYセーターSLYセーターSLYセーターSLYセーターSLYセーターSLYセーター
-      .search__content-item-box-body__num
-        .search__content-item-box-body__num-price
-          ¥ 1,500
-        .search__content-item-box-body__num-favorite
-          = fa_icon 'heart-o', class: 'favorite--icon'
-          .search__content-item-box-body__num-favorite-num
-            %p 20
-        .search__content-item-box-body__num-tax
-          (税込)
+- @search_result.each do |items|
+  .search__content-item-box
+    = link_to "/items" ,class: "pickup-content__title-link" do
+      = image_tag("m90055501397_1.jpg", alt: "商品", class: "search__content-item-box-photo")
+      .search__content-item-box-body
+        .search__content-item-box-body-name
+          = items.name
+        .search__content-item-box-body__num
+          .search__content-item-box-body__num-price
+            = "¥#{items.price}"
+          .search__content-item-box-body__num-favorite
+            = fa_icon 'heart-o', class: 'favorite--icon'
+            .search__content-item-box-body__num-favorite-num
+              %p 20
+          .search__content-item-box-body__num-tax
+            (税込)

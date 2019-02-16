@@ -1,13 +1,20 @@
 = render "items/header"
-= render "share/bread-crumps"
+.bread-crumps
+  .bread-crumps__item
+    - breadcrumb :search
+    = breadcrumbs separator: " &rsaquo; "
 
 .search__body
   .search__body-container
     = render "search-side-bar"
     .search__content
-      %h2.search__content-title 検索結果４０件
-      .search__content-item
-        - 20.times do
+      - if @search_data.present?
+        %h2.search__content-title
+          = "検索結果 1〜#{@search_count}"
+        .search__content-item
           = render 'search-item-box'
+      - else
+        %h2.search__content-title 検索結果 0件
+        .search__content-item 該当する商品が見つかりません。商品は毎日増えていますので、これからの出品に期待してください。
 
 = render 'footer'

@@ -1,3 +1,18 @@
+
+20.times do |n|
+     Item.create(
+        name: Faker::Food.fruits,
+        price: Faker::Commerce.price,
+        category_id: Faker::Number.between(1, 10),
+        size_id: Faker::Number.between(1, 10),
+        condition_id: Faker::Number.between(1, 10),
+        delivery_fee_id: Faker::Number.between(1, 10),
+        delivery_day_id: Faker::Number.between(1, 10),
+        ships_forms_id: Faker::Number.between(1, 10),
+      )
+end
+
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #

@@ -1,7 +1,7 @@
 .footer{
   clear: both;
   background-color: #212121;
-  height: 750px;
+  height: auto;
   width: 100vw;
   font-size: 14px;
   &__banner{
@@ -16,7 +16,6 @@
   &-main{
     width: 1052px;
     height: 300px;
-    clear: both;
     margin: auto;
     padding-top: 35px;
     &-global{

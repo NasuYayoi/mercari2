@@ -1,0 +1,15 @@
+.buy-single-container
+  = render 'devise/registrations/header'
+  .buy-single-container__body
+    %h2.buy-single-container__body-title 購入が完了しました。
+    .buy-content
+      .buy-content-inner
+        %h3.buy-content-inner__photo
+          = image_tag( "m90055501397_1.jpg", class: "buy-content-inner__photo-img" )
+        %p.buy-content-inner__name
+          = @item.name
+        .buy-content-inner__price
+          %p.buy-content-inner__price--bold
+            = "¥#{@item.price}"
+
+  = render 'devise/registrations/footer'

@@ -1,7 +1,223 @@
 .search-side-bar {
   width: 240px;
   float: left;
-  background-color: yellow; //仮背景
-  height: 700px; //仮背景
   margin: 0 40px 0 0;
+  &__detail {
+    position: relative;
+  }
+  &__top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    margin: 0 auto;
+    opacity: 1;
+    position: static;
+    width: auto;
+    &-select {
+      width: 100%;
+      background-color: $white;
+      text-align: left;
+      height: 48px;
+      padding: 0 16px;
+      border: 1px solid #ccc;
+    }
+  }
+  &__main {
+    position: static;
+    display: block;
+    box-shadow: none;
+    padding: 16px;
+    margin:40px 0 0;
+    background-color: $white;
+    &-title {
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+    }
+    &-keyword {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &-form {
+        width: 100%;
+        margin-top: 8px;
+        height: 48px;
+        padding:10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: $white;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+    }
+    &-category {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &-wrap {
+        margin-top: 8px;
+        &-select {
+          width: 100%;
+          position: relative;
+          z-index: 2;
+          height: 48px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border:1px solid #ccc;
+          background: 0;
+          font-size: 16px;
+          line-height: 1.5;
+          cursor: pointer;
+        }
+      }
+      &-hide {
+        margin-top: 8px;
+      }
+    }
+    &-brand {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &-form {
+        margin-top: 8px;
+        height: 48px;
+        padding:0 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: $white;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+    }
+    &-itemsize {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &-wrap {
+        margin-top: 8px;
+      }
+      &-form {
+        width: 100%;
+        margin-top: 8px;
+        height: 48px;
+        padding:0 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: $white;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+    }
+    &-price {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &-wrap {
+        margin-top: 8px;
+      }
+      &-select {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        height: 48px;
+        padding: 0 16px;
+        border-radius: 4px;
+        border:1px solid #ccc;
+        background: 0;
+        font-size: 16px;
+        line-height: 1.5;
+        cursor: pointer;
+      }
+      &-input {
+        width: 42%;
+        margin-top: 8px;
+        height: 48px;
+        padding:10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: $white;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+      span {
+        display: inline-block;
+        width: 10%;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+    &-condition {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &__checkbox {
+        position: relative;
+        display: inline-block;
+        width: 48%;
+        vertical-align: middle;
+        word-break: break-word;
+        font-size: 12px;
+        input {
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+    &-delivery {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &__checkbox {
+        display: inline-block;
+        width: 48%;
+        vertical-align: middle;
+        word-break: break-word;
+        font-size: 12px;
+      }
+    }
+    &-buyer {
+      margin-top: 24px;
+      font-size: 14px;
+      vertical-align: middle;
+      font-weight: 400;
+      &__checkbox {
+      }
+    }
+    &-action {
+      @include clearfix;
+      padding: 40px 0 0;
+      &-clear {
+        float: left;
+        width: 45%;
+        background-color: #aaa;
+        border: 1px solid #aaa;
+        color: $white;
+        display: block;
+        line-height: 48px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+      }
+      &-fix {
+        float: right;
+        width: 45%;
+        background-color: #ea352d;
+        border: 1px solid #ea352d;
+        color: $white;
+        display: block;
+        line-height: 48px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+  }
 }
