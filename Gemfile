@@ -75,5 +75,10 @@ gem 'devise'
 gem 'ancestry'
 gem 'owlcarousel-rails'
 gem "gretel"
+
+gem 'mini_magick'
+gem 'dropzonejs-rails'
+gem 'gon'
 gem 'ransack'
 gem 'payjp'
+
