@@ -4,14 +4,111 @@ class ItemsController < ApplicationController
     @items = Item.order("RAND()").limit(4)
   end
   def create
-    Item.create(name: item_params[:name],description: item_params[:description],category_id: item_params[:category_id],size_id: item_params[:size_id],brand: item_params[:brand],condition_id: item_params[:condition_id],delivery_fee_id: item_params[:delivery_fee_id],delivery_method_id: item_params[:delivery_method_id],ships_forms_id: item_params[:ships_forms_id],delivery_day_id: item_params[:delivery_day_id],price: item_params[:price], )
+    Item.create(name: item_params[:name],description: item_params[:description],category_id: item_params[:category_id],size_id: item_params[:size_id],brand: item_params[:brand],condition_id: item_params[:condition_id],delivery_fee_id: item_params[:delivery_fee_id],delivery_method_id: item_params[:delivery_method_id],ships_forms_id: item_params[:ships_forms_id],delivery_day_id: item_params[:delivery_day_id],price: item_params[:price])
     # redirect_to action: :index
-    # トップページに飛ばすコードを入れる
   end
   def sell
     @item = Item.new
     @item.images.build
     @item.build_brand
+    @midcategories_id = params[:midcategories_id]
+    if @midcategories_id == "midcategories1"
+      @midcategories_id = @leadies_tops
+    elsif @midcategories_id == "midcategories2"
+      @midcategories_id = @leadies_jacket
+    elsif @midcategories_id == "midcategories3"
+      @midcategories_id = @leadies_pants
+    elsif @midcategories_id == "midcategories4"
+      @midcategories_id = @leadies_skirt
+    elsif @midcategories_id == "midcategories5"
+      @midcategories_id = @leadies_onepiece
+    elsif @midcategories_id == "midcategories6"
+      @midcategories_id = @leadies_shoes
+    elsif @midcategories_id == "midcategories7"
+      @midcategories_id = @leadies_roomware
+    elsif @midcategories_id == "midcategories8"
+      @midcategories_id = @leadies_legware
+    elsif @midcategories_id == "midcategories9"
+      @midcategories_id = @leadies_cap
+    elsif @midcategories_id == "midcategories10"
+      @midcategories_id = @leadies_bag
+    elsif @midcategories_id == "midcategories11"
+      @midcategories_id = @leadies_accessories
+    elsif @midcategories_id == "midcategories12"
+      @midcategories_id = @leadies_hairaccessories
+    elsif @midcategories_id == "midcategories13"
+      @midcategories_id = @leadies_samll
+    elsif @midcategories_id == "midcategories14"
+      @midcategories_id = @leadies_clock
+    elsif @midcategories_id == "midcategories15"
+      @midcategories_id = @leadies_wig
+    elsif @midcategories_id == "midcategories16"
+      @midcategories_id = @leadies_swimsuit
+    elsif @midcategories_id == "midcategories17"
+      @midcategories_id = @leadies_suits
+    elsif @midcategories_id == "midcategories18"
+      @midcategories_id = @leadies_maternity
+    elsif @midcategories_id == "midcategories19"
+      @midcategories_id = @leadies_others
+    elsif @midcategories_id == "midcategories21"
+      @midcategories_id = @mens_tops
+    elsif @midcategories_id == "midcategories22"
+      @midcategories_id = @mens_jacket
+    elsif @midcategories_id == "midcategories23"
+      @midcategories_id = @mens_pants
+    elsif @midcategories_id == "midcategories24"
+      @midcategories_id = @mens_shoes
+    elsif @midcategories_id == "midcategories25"
+      @midcategories_id = @mens_bag
+    elsif @midcategories_id == "midcategories26"
+      @midcategories_id = @mens_suit
+    elsif @midcategories_id == "midcategories27"
+      @midcategories_id = @mens_cap
+    elsif @midcategories_id == "midcategories28"
+      @midcategories_id = @mens_accessories
+    elsif @midcategories_id == "midcategories29"
+      @midcategories_id = @mens_samll
+    elsif @midcategories_id == "midcategories30"
+      @midcategories_id = @mens_clock
+    elsif @midcategories_id == "midcategories31"
+      @midcategories_id = @mens_swimsuit
+    elsif @midcategories_id == "midcategories32"
+      @midcategories_id = @mens_legware
+    elsif @midcategories_id == "midcategories33"
+      @midcategories_id = @mens_underware
+    elsif @midcategories_id == "midcategories36"
+      @midcategories_id = @baby_girl95
+    elsif @midcategories_id == "midcategories37"
+      @midcategories_id = @baby_boy95
+    elsif @midcategories_id == "midcategories38"
+      @midcategories_id = @baby_girlboy95
+    elsif @midcategories_id == "midcategories39"
+      @midcategories_id = @baby_boy100
+    elsif @midcategories_id == "midcategories40"
+      @midcategories_id = @baby_boygirl100
+    elsif @midcategories_id == "midcategories41"
+      @midcategories_id = @baby_shoes
+    elsif @midcategories_id == "midcategories42"
+      @midcategories_id = @baby_small
+    elsif @midcategories_id == "midcategories43"
+      @midcategories_id = @baby_toilet
+    elsif @midcategories_id == "midcategories44"
+      @midcategories_id = @baby_movetool
+    elsif @midcategories_id == "midcategories45"
+      @midcategories_id = @baby_toilet
+    elsif @midcategories_id == "midcategories46"
+      @midcategories_id = @baby_foods
+    elsif @midcategories_id == "midcategories47"
+      @midcategories_id = @baby_sleeptool
+    elsif @midcategories_id == "midcategories48"
+      @midcategories_id = @baby_toy
+    elsif @midcategories_id == "midcategories49"
+      @midcategories_id = @baby_souvenir
+    elsif @midcategories_id == "midcategories50"
+      @midcategories_id = @baby_other
+    else
+      @midcategories_id = @leadies_tops
+    end
   end
   def show
   end
