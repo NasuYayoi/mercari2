@@ -1,130 +1,223 @@
 .all-container
   = render 'devise/registrations/header'
-  -# = form_for @item, url: {:action => :create} do |f|
-  -#   .sell-body
-  -#     .sell-body__title
-  -#       商品情報の入力
-  -#     .sell-body-picture
-  -#       .sell-body-picture-header
-  -#         .sell-body-picture-header__title
-  -#           出品画像
-  -#         .sell-body-picture-header__mark
-  -#           必須
-  -#         .sell-body-picture-header__text
-  -#           最大4枚までアップできます
-  -#       .sell-body-picture-body
-  -#         -# = fields_for(@image) do |image|
-  -#         -#   = image.file_field :image
-  -#             #file_drop_area.sell-body-picture-body-upload-box
-  -#               %input.sell-body-picture-body-upload-box__picture
-  -#               %pre.sell-body-picture-body-upload-box__text
-  -#                 ドラッグアンドドロップ
-  -#                 またはクリックしてファイルをアップロード
-  -#     .sell-body-information
-  -#       .sell-body-information-content
-  -#         .sell-body-information-content__name
-  -#           商品名
-  -#         .sell-body-information-content__mark
-  -#           必須
-  -#       %input{class: "sell-body-information__input",placeholder: "商品名(必須40文字まで)"}
-  -#       .sell-body-information-content
-  -#         .sell-body-information-content__name
-  -#           商品の説明
-  -#         .sell-body-information-content__mark
-  -#           必須
-  -#       %textarea{class: "sell-body-information__textarea",placeholder: "商品の説明(必須1,000文字以内) (色、素材、重さ、定価、注意点など) 例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"}
+  = form_for @item, url: {:action => :create} do |f|
+    .sell-body
+      .sell-body__title
+        商品情報の入力
+      .sell-body-picture
+        .sell-body-picture-header
+          .sell-body-picture-header__title
+            出品画像
+          .sell-body-picture-header__mark
+            必須
+          .sell-body-picture-header__text
+            最大4枚までアップできます
+        .sell-body-picture-body
+          = fields_for :images do |image|
+            = f.label :image do
+              #file_drop_area.sell-body-picture-body-upload-box.dz-message.needsclick
+                = f.file_field :image, class: 'picture-file__field'
+                = f.file_field :image, class: 'picture-file__field'
+                = f.file_field :image, class: 'picture-file__field'
+                = f.file_field :image, class: 'picture-file__field'
+                %input.sell-body-picture-body-upload-box__picture
+                  %pre.sell-body-picture-body-upload-box__text
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
+      .sell-body-information
+        .sell-body-information-content
+          .sell-body-information-content__name
+            商品名
+          .sell-body-information-content__mark
+            必須
+        = f.text_field :name ,class: 'sell-body-information__input',placeholder: "商品名(必須40文字まで)"
+        .sell-body-information-content
+          .sell-body-information-content__name
+            商品の説明
+          .sell-body-information-content__mark
+            必須
+        = f.text_area :description ,class: 'sell-body-information__textarea',placeholder: "商品の説明(必須1,000文字以内) (色、素材、重さ、定価、注意点など) 例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
 
-  -#     .sell-body-detail
-  -#       .sell-body-detail__title
-  -#         商品の詳細
-  -#       .sell-body-detail-contents
-  -#         .sell-body-detail-contents__category
-  -#           .sell-body-detail-contents__category__name
-  -#             カテゴリー
-  -#           .sell-body-detail-contents__category__mark
-  -#             必須
-  -#         = f.collection_select :category_id, Category.all, :id, :name, {}, {class: 'wide-categories__input'}
-  -#         .sell-body-detail-contents__states
-  -#           .sell-body-detail-contents__states__name
-  -#             商品の状態
-  -#           .sell-body-detail-contents__states__mark
-  -#             必須
-  -#         %select.dummy__input2
+      .sell-body-detail
+        .sell-body-detail__title
+          商品の詳細
+        .sell-body-detail-contents
+          .sell-body-detail-contents__category
+            .sell-body-detail-contents__category__name
+              カテゴリー
+            .sell-body-detail-contents__category__mark
+              必須
+            %select.categories__input
+              %option{value: 'categories0'} ---
+              %option{value: 'categories1'} レディース
+              %option{value: 'categories2'} メンズ
+              %option{value: 'categories3'} ベビー・キッズ
+              %option{value: 'categories4'} キッズ・キッズ
+              %option{value: 'categories5'} インテリア・住まい・小物
+              %option{value: 'categories6'} 本・音楽・ゲーム
+              %option{value: 'categories7'} おもちゃ・ホビー・グッズ
+              %option{value: 'categories8'} コスメ・香水・美容
+              %option{value: 'categories9'} 家電・スマホ・カメラ
+              %option{value: 'categories10'} スポーツ・レジャー
+              %option{value: 'categories11'} ハンドメイド
+              %option{value: 'categories12'} チケット
+              %option{value: 'categories13'} 自動車・オートバイ
+              %option{value: 'categories14'} その他
 
-  -#     .sell-body-delivery
-  -#       .sell-body-delivery-header
-  -#         .sell-body-delivery-header__title
-  -#           発送について
-  -#           = fa_icon 'question-circle', class: "sell-body-delivery-header__question-circle"
-  -#       .sell-body-delivery-contents
-  -#         .sell-body-delivery-contents__burden
-  -#           .sell-body-delivery-contents__burden-notice
-  -#             .sell-body-delivery-contents__burden-notice__name
-  -#               配送料の負担
-  -#             .sell-body-delivery-contents__burden-notice__mark
-  -#               必須
-  -#           %select.dummy__input3
-  -#         .sell-body-delivery-contents__method
-  -#           .sell-body-delivery-contents__method-notice
-  -#             .sell-body-delivery-contents__method-notice__name
-  -#               配送の方法
-  -#             .sell-body-delivery-contents__method-notice__mark
-  -#               必須
-  -#           %select.dummy__input4
-  -#         .sell-body-delivery-contents__region
-  -#           .sell-body-delivery-contents__region-notice
-  -#             .sell-body-delivery-contents__region-notice__name
-  -#               配送元の地域
-  -#             .sell-body-delivery-contents__region-notice__mark
-  -#               必須
-  -#           = f.collection_select :prefecture, Prefecture.all, :id, :name, {}, {class: "sell-body-delivery-contents__region-select"}
-  -#         .sell-body-delivery-contents__days
-  -#           .sell-body-delivery-contents__days-notice
-  -#             .sell-body-delivery-contents__days-notice__name
-  -#               配送までの日数
-  -#             .sell-body-delivery-contents__days-notice__mark
-  -#               必須
-  -#           %select.dummy__input5
+          .sell-body-detail-contents__category#leadies
+            %select.categories__input.midcategories
+              %option{value: 'midcategories0'} ---
+              %option{value: 'midcategories1'} トップス
+              %option{value: 'midcategories2'} ジャケット/アウター
+              %option{value: 'midcategories3'} パンツ
+              %option{value: 'midcategories4'} スカート
+              %option{value: 'midcategories5'} ワンピース
+              %option{value: 'midcategories6'} 靴
+              %option{value: 'midcategories7'} ルームウェア/パジャマ
+              %option{value: 'midcategories8'} レッグウェア
+              %option{value: 'midcategories9'} 帽子
+              %option{value: 'midcategories10'} バッグ
+              %option{value: 'midcategories11'} アクセサリー
+              %option{value: 'midcategories12'} ヘアアクセサリー
+              %option{value: 'midcategories13'} 小物
+              %option{value: 'midcategories14'} 時計
+              %option{value: 'midcategories15'} ウィッグ/エクステ
+              %option{value: 'midcategories16'} 浴衣/水着
+              %option{value: 'midcategories17'} スーツ/フォーマル/ドレス
+              %option{value: 'midcategories18'} マタニティ
+              %option{value: 'midcategories19'} その他
 
-  -#     .sell-body-price
-  -#       .sell-body-price-side
-  -#         .sell-body-price-side__title
-  -#           販売価格(300〜9,999,999)
-  -#           = fa_icon 'question-circle', class: "sell-body-price-side__question-circle"
-  -#       .sell-body-price-main
-  -#         .sell-body-price-main-input
-  -#           .sell-body-price-main-input__box
-  -#             .sell-body-price-main-input__box__name
-  -#               価格
-  -#             .sell-body-price-main-input__box__mark
-  -#               必須
-  -#             %input{class: "sell-body-price-main-input__box__yen", placeholder: "例)300"}
-  -#             .sell-body-price-main-input__box__yen-mark
-  -#               ￥
-  -#         .sell-body-price-main-commission
-  -#           .sell-body-price-main-commission__box
-  -#             .sell-body-price-main-commission__box__name
-  -#               販売手数料(10%)
-  -#             .sell-body-price-main-commission__box__ans
-  -#               ー
-  -#         .sell-body-price-main-profit
-  -#           .sell-body-price-main-profit__box
-  -#             .sell-body-price-main-profit__box__name
-  -#               販売利益
-  -#             .sell-body-price-main-profit__box__ans
-  -#               ー
-  -#     .sell-body-exhibit
-  -#       %p.sell-body-exhibit__caution
-  -#         #{link_to "禁止されている出品", "#",class: "sell-body-exhibit__caution-link"}、#{link_to "行為", "#",class: "sell-body-exhibit__caution-link"}を必ずご確認ください。
-  -#       %p.sell-body-exhibit__caution
-  -#         またブランド品でシリアルナンバー等がある場合はご記載ください。#{link_to "偽ブランドの販売", "#",class: "sell-body-exhibit__caution-link"}
-  -#       %p.sell-body-exhibit__caution
-  -#         は犯罪であり処罰される可能性があります。
-  -#       %p.sell-body-exhibit__caution
-  -#         また、出品をもちまして#{link_to "加盟店規約", "#",class: "sell-body-exhibit__caution-link"}に同意したことになります。
-  -#       = f.submit '出品する', class: 'sell-body-exhibit__send'
-  -#       = link_to "#" ,class: "sell-body-exhibit__exit" do
-  -#         .sell-body-exhibit__exit-link
-  -#           もどる
+          .sell-body-detail-contents__category#mens
+            %select.categories__input.midcategories
+              %option{value: 'midcategories20'} ---
+              %option{value: 'midcategories21'} トップス
+              %option{value: 'midcategories22'} ジャケット/アウター
+              %option{value: 'midcategories23'} パンツ
+              %option{value: 'midcategories24'} 靴
+              %option{value: 'midcategories25'} バッグ
+              %option{value: 'midcategories26'} スーツ
+              %option{value: 'midcategories27'} 帽子
+              %option{value: 'midcategories28'} アクセサリー
+              %option{value: 'midcategories29'} 小物
+              %option{value: 'midcategories30'} 時計
+              %option{value: 'midcategories31'} 水着
+              %option{value: 'midcategories32'} レッグウェアー
+              %option{value: 'midcategories33'} アンダーウェア
+              %option{value: 'midcategories34'} その他
+
+
+          .sell-body-detail-contents__category#baby
+            %select.categories__input.midcategories
+              %option{value: 'midcategories35'} ---
+              %option{value: 'midcategories36'} ベビー服(女の子用) ~95cm
+              %option{value: 'midcategories37'} ベビー服(男の子用) ~95cm
+              %option{value: 'midcategories38'} ベビー服(男女兼用) ~95cm
+              %option{value: 'midcategories39'} キッズ服(女の子用) 100cm~
+              %option{value: 'midcategories40'} キッズ服(男の子用) 100cm~
+              %option{value: 'midcategories41'} キッズ服(男女兼用) 100cm~
+              %option{value: 'midcategories42'} キッズ靴
+              %option{value: 'midcategories43'} 子ども用ファッション小物
+              %option{value: 'midcategories44'} おむつ/トイレ/バス
+              %option{value: 'midcategories45'} 外出/移動用品
+              %option{value: 'midcategories46'} 授乳/食事
+              %option{value: 'midcategories47'} ベビー家具/寝具/室内用品
+              %option{value: 'midcategories48'} おもちゃ
+              %option{value: 'midcategories49'} 行事/記念品
+              %option{value: 'midcategories50'} その他
+
+          .sell-body-detail-contents__category#smallcategories
+            .sell-body-detail-contents__category-small-content
+              = f.collection_select :category_id, @midcategories_id, :id, :name, {prompt: '---'}, {class: 'categories__input', id: 'include_id'}
+
+          #include_id-content.sell-body-detail-contents__category
+            .sell-body-detail-contents__category__name
+              サイズ
+            .sell-body-detail-contents__category__mark
+              必須
+            = f.collection_select :size_id, Size.all, :id, :size, {prompt: '---'}, {class: 'categories__input'}
+          .sell-body-detail-contents__category
+            .sell-body-detail-contents__category__name
+              ブランド
+            .sell-body-detail-contents__category__unnecessary-mark
+              任意
+            = f.fields_for :brand do |brand|
+              = brand.text_field :name ,class: 'brand__input', placeholder: '例)シャネル'
+          .sell-body-detail-contents__states
+            .sell-body-detail-contents__states__name
+              商品の状態
+            .sell-body-detail-contents__states__mark
+              必須
+            = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: '---'}, {class: "dummy__input2"}
+
+      .sell-body-delivery
+        .sell-body-delivery-header
+          .sell-body-delivery-header__title
+            発送について
+            = fa_icon 'question-circle', class: "sell-body-delivery-header__question-circle"
+        .sell-body-delivery-contents
+          .sell-body-delivery-contents__burden
+            .sell-body-delivery-contents__burden-notice
+              .sell-body-delivery-contents__burden-notice__name
+                配送料の負担
+              .sell-body-delivery-contents__burden-notice__mark
+                必須
+            = f.select :delivery_fee_id, options_from_collection_for_select(@delivery_fee_all, :id, :fee), {prompt: '---'}, {class: "dummy__input3", data: {remote: true, url: url_for(action: :dynamic_delivery_method)}}
+            #method_select.sell-body-delivery-contents__method
+
+          .sell-body-delivery-contents__region
+            .sell-body-delivery-contents__region-notice
+              .sell-body-delivery-contents__region-notice__name
+                配送元の地域
+              .sell-body-delivery-contents__region-notice__mark
+                必須
+            = f.collection_select :ships_forms_id, ShipsForm.all, :id, :area, {prompt: '---'}, {class: "sell-body-delivery-contents__region-select"}
+          .sell-body-delivery-contents__days
+            .sell-body-delivery-contents__days-notice
+              .sell-body-delivery-contents__days-notice__name
+                配送までの日数
+              .sell-body-delivery-contents__days-notice__mark
+                必須
+            = f.collection_select :delivery_day_id, DeliveryDay.all, :id, :day, {prompt: '---'}, {class: "dummy__input5"}
+
+      .sell-body-price
+        .sell-body-price-side
+          .sell-body-price-side__title
+            販売価格(300〜9,999,999)
+            = fa_icon 'question-circle', class: "sell-body-price-side__question-circle"
+        .sell-body-price-main
+          .sell-body-price-main-input
+            .sell-body-price-main-input__box
+              .sell-body-price-main-input__box__name
+                価格
+              .sell-body-price-main-input__box__mark
+                必須
+              = f.text_field :price ,class: 'sell-body-price-main-input__box__yen',placeholder: "例)300"
+              .sell-body-price-main-input__box__yen-mark
+                ￥
+          .sell-body-price-main-commission
+            .sell-body-price-main-commission__box
+              .sell-body-price-main-commission__box__name
+                販売手数料(10%)
+              .sell-body-price-main-commission__box__ans
+                ー
+          .sell-body-price-main-profit
+            .sell-body-price-main-profit__box
+              .sell-body-price-main-profit__box__name
+                販売利益
+              .sell-body-price-main-profit__box__ans
+                ー
+      .sell-body-exhibit
+        %p.sell-body-exhibit__caution
+          #{link_to "禁止されている出品", "#",class: "sell-body-exhibit__caution-link"}、#{link_to "行為", "#",class: "sell-body-exhibit__caution-link"}を必ずご確認ください。
+        %p.sell-body-exhibit__caution
+          またブランド品でシリアルナンバー等がある場合はご記載ください。#{link_to "偽ブランドの販売", "#",class: "sell-body-exhibit__caution-link"}
+        %p.sell-body-exhibit__caution
+          は犯罪であり処罰される可能性があります。
+        %p.sell-body-exhibit__caution
+          また、出品をもちまして#{link_to "加盟店規約", "#",class: "sell-body-exhibit__caution-link"}に同意したことになります。
+        = f.submit '出品する', class: 'sell-body-exhibit__send'
+        = link_to "#" ,class: "sell-body-exhibit__exit" do
+          .sell-body-exhibit__exit-link
+            もどる
 
   = render 'devise/registrations/footer'

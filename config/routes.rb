@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root  'items#index'
   get 'items/sell' => 'items#sell'
   get 'items/search' => "items#search"
-  
+  match 'dynamic_delivery_method', to: 'items#dynamic_delivery_method', via: [:get, :post] 
   resources :items do
     member do
       get 'buy'

@@ -18,6 +18,21 @@
   vertical-align: top;
   text-align: center;
 }
+@mixin unnecessaryMark{
+  float: left;
+  width: 26px;
+  height: 16px;
+  font-size: 12px;
+  background-color: $gray;
+  line-height: 16px;
+  font-weight: bold;
+  color: $white;
+  padding: 1px 2px;
+  margin: 0 0 0 8px;
+  border-radius: 2px;
+  vertical-align: top;
+  text-align: center;
+}
 @mixin sideTitle{
   float: left;
   color: #888;
@@ -35,4 +50,29 @@
   margin-bottom: 20px;
   height: 48px;
   background-color: #FFFFFF;
+  clear: both;
 }
+@mixin text_Field{
+  width: calc(100% - 32px) ;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  margin-bottom: 20px;
+  height: 48px;
+  background-color: #FFFFFF;
+  clear: both;
+}
+
+
+
+
+
+
+
+
+
+
+

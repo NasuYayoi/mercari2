@@ -1,0 +1,7 @@
+var appendhtml = `<div class = "sell-body-delivery-contents__method-notice">
+                    <div class = "sell-body-delivery-contents__method-notice__name">配送の方法</div>
+                    <div class = "sell-body-delivery-contents__method-notice__mark">必須</div>
+                  </div>
+                  <%= j(select :delivery_method, :delivery_method_id, options_from_collection_for_select(@method, :id, :method), {prompt: '---'}, class: "dummy__input3") %>
+                 `
+$('#method_select').html(appendhtml);
